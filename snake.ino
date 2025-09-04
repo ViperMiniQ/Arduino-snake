@@ -155,15 +155,14 @@ void loop()
 
     if (IrReceiver.isIdle() && !finished)
     {    
+        move_snake();
+
         if (check_snake_eats_food())
         {
             score += 1;
-            move_snake();
             generate_food();
         }
-        else
-            move_snake();
-
+        
         check_snake_hit_wall();
         check_snake_bit_itself();
 
@@ -276,7 +275,7 @@ bool check_body_intersects_food()
 {
     for (int i=score; i>=0; i--)
     {
-        if ((food[0] == head[0]) && (food[1] == head[1]))
+        if ((food[0] == body[i][0]) && (food[1] == body[i][1]))
         {
             return true;
         }
